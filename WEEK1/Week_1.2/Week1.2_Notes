@@ -1,0 +1,18 @@
+
+1. Languages are used to write applications.
+2. Developeres write high level code in these languages.
+3. Every language has a compiler which converts the developer ode into 01 .
+
+Compiled Languages
+- First need to compile,then need to run.
+- Usually don't compile if there is an error in the code .
+- example - java,c++,rust
+
+Interpreted Languages 
+- Usually go line by line
+- Can run partially if the error comes later.
+- eg - Javascript,python.
+
+
+For most websites Javascript is primary language used to create websites.
+
