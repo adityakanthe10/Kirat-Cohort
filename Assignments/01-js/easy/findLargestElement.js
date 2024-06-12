@@ -6,7 +6,13 @@
 */
 
 function findLargestElement(numbers) {
-    
+    let biggestELement = numbers[0];
+    for(let i=0;i<numbers.length;i++){
+        if numbers[i]> biggestELement{
+            biggestELement = numbers[i];
+        }
+    }
+    return biggestELement;
 }
 
 module.exports = findLargestElement;

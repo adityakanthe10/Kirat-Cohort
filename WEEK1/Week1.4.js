@@ -39,15 +39,15 @@
 
 // // DRY
 
-function square(a) {
-  return a * a;
-}
+// function square(a) {
+//   return a * a;
+// }
 
-function sumOfSomething(a, b, fn) {
-  const val1 = fn(a);
-  const val2 = fn(b);
-  return val1 + val2;
-}
+// function sumOfSomething(a, b, fn) {
+//   const val1 = fn(a);
+//   const val2 = fn(b);
+//   return val1 + val2;
+// }
 
-const value2 = sumOfSomething(1, 2, square);
-console.log(value2);
+// const value2 = sumOfSomething(1, 2, square);
+// console.log(value2);
