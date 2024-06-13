@@ -14,7 +14,13 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  let value = transactions.category;
+  let value1 = transactons.totalSpent;
 }
 
 module.exports = calculateTotalSpentByCategory;
+
+// return output in arrays placed like ket value pair
+// 1. display category and price
+// 2. display same category multiple times transac as one
+// 3.
