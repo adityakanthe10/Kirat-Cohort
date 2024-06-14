@@ -16,6 +16,70 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+  //  Method to add a number to the result
+  add(num) {
+    if (isNaN(num)) {
+      throw new Error("Invalid input");
+    }
+    this.result += parseFloat(num);
+  }
+  // Method to subtract a number from the result
+  subtract(num) {
+    if (isNaN(num)) {
+      throw new Error("Invalid Input");
+    }
+    this.result -= parseFloat(num);
+  }
+  // Method to multiply the result by a number
+  multiply(num) {
+    if (isNaN(num)) {
+      throw new Error("Invalid Input");
+    }
+    this.result *= parseFloat(num);
+  }
+  // Method to divide the result by a number
+  divide(num) {
+    if (isNaN(num)) {
+      throw new Error("Invalid Input");
+    } else if (num == 0) {
+      throw new Error("Invalid Input");
+    } else if (parseFloat(num) === 0) {
+      throw new Error("Division by zero is not allowed");
+    }
+    this.result /= parseFloat(num);
+  }
+
+  // Method to clear the result
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  // Method to evaluate a string arithmetic expression
+  calculate(expression) {
+    // Remove extra spaces and validate the expression
+    const cleanedExpression = expression
+      .replace(/\s+/g, "")
+      .replace(/[^-()\d/*+.]/g, "");
+
+    // checl for divison by zero
+    if (cleanedExpression.includes("/0")) {
+      throw new Error("Division by zero is not allowed");
+    }
+
+    try {
+      this.result = eval(cleanedExpression);
+    } catch (error) {
+      throw new Error("Invalid Input");
+    }
+  }
+}
 
 module.exports = Calculator;

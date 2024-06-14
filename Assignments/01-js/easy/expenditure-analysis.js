@@ -14,13 +14,29 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  let value = transactions.category;
-  let value1 = transactons.totalSpent;
+  // 1. Initialize an object to store total spending per category
+  let totalSpendInCategory = {};
+  // 2. Iterate through each transactions
+  transactions.forEach((transaction) => {
+    const { category, price } = transaction;
+
+    // 3. Update total spending for the category
+    if (totalSpendInCategory[category]) {
+      totalSpendInCategory[category] += price;
+    } else {
+      totalSpendInCategory[category] = price;
+    }
+  });
+  // 4 . Foramt the result into an array of objects
+
+  let result = [];
+  for (let category in totalSpendInCategory) {
+    result.push({
+      category: category,
+      totalSpent: totalSpendInCategory[category],
+    });
+  }
+  return result;
 }
 
 module.exports = calculateTotalSpentByCategory;
-
-// return output in arrays placed like ket value pair
-// 1. display category and price
-// 2. display same category multiple times transac as one
-// 3.
