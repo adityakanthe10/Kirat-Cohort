@@ -13,9 +13,9 @@ function isPalindrome(str) {
   return isPal === compstr;
 }
 
-console.log(isPalindrome("@"));
-console.log(isPalindrome("A man a plan a canal Panama"));
-console.log(isPalindrome("Able, was I ere I saw Elba!"));
-console.log(isPalindrome("level"));
+// console.log(isPalindrome("@"));
+// console.log(isPalindrome("A man a plan a canal Panama"));
+// console.log(isPalindrome("Able, was I ere I saw Elba!"));
+// console.log(isPalindrome("level"));
 
 module.exports = isPalindrome;
