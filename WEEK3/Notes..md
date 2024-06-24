@@ -48,3 +48,29 @@ Cryptography jargon .
 - In each table, it lets you dump JSON data.
 - It is Schemaless .
 - It scales well and is a decent choice for most use cases .
+
+## Week 3.3 Authentication,JWTs and try/catch 
+
+- Three things when creating JWT
+
+1. Generating the JWT .(sign)
+2. Decoding the JWT .
+3. Verify the JWT .
+
+-  TRY AND CATCH
+  - When an exception is raised the process exits since the JS Program doesn't want to proceed anymore, but you might want the program to still continue ,that is when u use try catch.
+
+  ## Week 3.4 Middleware Recap and Assignments 
+
+  - Express is a routing and middleware web framework that has minimal functionality of its own . An Express Application is essentially a series of middleare function calls .
+
+  - Middleware functions are functions that have access to the request object(req), the response object(res), and the next middleware function in the applications request-response cycle. The next middleware function is commonly denoted by a variable named next .
+
+  - Middleware functions can perform the following tasks :
+
+  1. Execute any code . 
+  2. Make changes to the request and response object .
+  3. End the request-response cycle . 
+  4. Call the next middleware function in the stack . 
+
+  
