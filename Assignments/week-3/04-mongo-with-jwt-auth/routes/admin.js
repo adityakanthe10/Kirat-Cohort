@@ -4,8 +4,7 @@ const adminMiddleware = require("../middleware/admin");
 const { Admin } = require("../db/index");
 const { Course } = require("../db/index");
 const jwt = require("jsonwebtoken");
-// const jwtsecret = process.env.JWT_SECRET;
-// require("dotenv").config();
+
 const { JWT_SECRET } = require("../config");
 
 const app = express();

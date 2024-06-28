@@ -28,17 +28,17 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.post("./signin", (req, res) => {
+app.post("/signin", async (req, res) => {
   const { username, password } = req.body;
   try {
     if (!username || !password) {
       res.status(404).json("username and password required");
     }
-    const existingAdmin = await Admin.findOne({ username });
-    if (!existingAdmin) {
-      res.status(404).json("Admin does not exist ,Please sign up");
+    const existingUser = await User.findOne({ username });
+    if (!existingUser) {
+      res.status(404).json("User does not exist ,Please sign up");
     }
-    var token = jwt.sign({ username:username }, JWT_SECRET1);
+    var token = jwt.sign({ username: username }, JWT_SECRET1);
     console.log(token);
     return res.json({
       token: token,
@@ -49,13 +49,20 @@ app.post("./signin", (req, res) => {
   }
 });
 
-
 app.get("/courses", async (req, res) => {
   // Implement fetching all courses logic
   // Implement listing all courses logic
+  const token = req.headers.authorization;
+  const words1 = token.split(" ");
+  const jwtToken1 = words1[1];
+  const decodedUser = jwt.verify(jwtToken1, JWT_SECRET1);
+  // console.log(error);
+  if (decodedUser) {
+    username = decodedUser.username;
+  }
+
   const response = await Course.find({});
-  const username = req.headers.username;
-  const password = req.headers.password;
+
   try {
     const existingUser = await User.findOne({ username });
     if (!existingUser) {
@@ -80,40 +87,48 @@ app.get("/courses", async (req, res) => {
 
 app.post("/courses/:courseId", userMiddleware, async (req, res) => {
   // Implement course purchase logic
+  // const authorization = req.headers.authorization;
   const courseId = req.params.courseId;
-  const username = req.headers.username;
-
-  await User.updateOne(
-    {
-      username: username,
-    },
-    {
-      $push: {
-        purchasedCourses: courseId,
-      },
+  try {
+    const username = req.admin;
+    console.log(username);
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ msg: "course not found" });
     }
-  );
-  res.json({
-    message: "Purchase complete!",
-  });
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    if (!user.purchasedCourses.includes(courseId)) {
+      user.purchasedCourses.push(courseId);
+      await user.save();
+    } else {
+      res.status(404).json({ msg: "course already purchased" });
+    }
+    res.json("Course purchased successfully");
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: "Internal Server Error",
+    });
+  }
 });
-
 app.get("/purchasedCourses", userMiddleware, async (req, res) => {
   // Implement fetching purchased courses logic
-  const user = await User.findOne({
-    username: req.headers.username,
-  });
-
-  console.log(user.purchasedCourses);
-  const courses = await Course.find({
-    _id: {
-      $in: user.purchasedCourses,
-    },
-  });
-
-  res.json({
-    courses: courses,
-  });
+  const username = req.admin;
+  try {
+    const user = await User.findOne({ username }).populate("purchasedCourses");
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    res.json({
+      purchasedCourses: user.purchasedCourses,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Internal Server Error" });
+  }
 });
 
 app.listen(3001);
