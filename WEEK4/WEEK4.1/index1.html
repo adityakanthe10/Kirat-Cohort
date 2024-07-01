@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interesr</title>
+</head>
+<body>
+    <input id="amount" type="text" placeholder="Principal Amount"/>
+    <br><br>
+    <input id="rate" type="text" placeholder="Rate"/>
+    <br><br>
+    <input id="time"type="text" placeholder="Time"/>
+<br>
+<br>
+    <button onClick="SimpleInterest()">Calculate</button>
+    <br><br>
+    <div id="totalContainer">
+        Total : <span id="total"></span>
+    </div>
+    <br>
+    <div id="interest1">Interest: <span div id="interest"></span></div>
+</body>
+<script>
+    async function SimpleInterest(){
+        let a =document.getElementById("amount").value
+        let b =document.getElementById("rate").value
+        let c =document.getElementById("time").value
+        let response = await fetch(`https://sum-server.100xdevs.com/interest?principal=${a}&rate=${b}&time=${c}`)
+        console.log(response)
+        let ans = await response.json()
+        console.log(ans)
+        let Total =  ans.total
+        let Interest = ans.interest
+        document.getElementById("total").innerHTML = Total       
+        document.getElementById("interest").innerHTML = Interest       
+    }
+
+</script>
+</html>
