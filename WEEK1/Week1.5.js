@@ -1,6 +1,6 @@
 //  To read a file in your fileSystem
 
-const fs = require("fs");
+// const fs = require("fs");
 
 // fs.readFile("a.txt", "utf-8", function (err, data) {
 //   console.log(data);

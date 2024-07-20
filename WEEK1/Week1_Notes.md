@@ -1,7 +1,7 @@
 
 1. Languages are used to write applications.
 2. Developeres write high level code in these languages.
-3. Every language has a compiler which converts the developer ode into 01 .
+3. Every language has a compiler which converts the developer code into 01 .
 
 Compiled Languages
 - First need to compile,then need to run.
@@ -22,7 +22,7 @@ A function in Javascript is a set of statements that performs a task or calculat
 
 ## Week 1.5 
 
-- Async vs Sync Functions,real use of callbacks ,JS Browser Architectire , Promises, Async and Await
+- Async vs Sync Functions,real use of callbacks ,JS Browser Architecture , Promises, Async and Await
 
 - Common async functions
     - setTimeout,fs.readFile,Fetch
