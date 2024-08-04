@@ -20,4 +20,4 @@ A state change triggers a re-render. A re-render represents the actual DOM being
 
 ## Week 5.2
 
-- 
+- CORS Error -  

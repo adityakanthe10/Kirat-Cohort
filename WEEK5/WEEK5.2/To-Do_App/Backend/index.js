@@ -1,18 +1,19 @@
 // write a basic express boilerplate code ,starting with express.json(middleware)
 
+const cors = require("cors");
 const express = require("express");
 const { createTodo } = require("./types.js");
 const { updateTodo } = require("./types.js");
 const { todo } = require("./db.js");
 const app = express();
-
 app.use(express.json());
+app.use(cors());
 
 app.post("/todo", async (req, res) => {
   const createPayload = req.body;
   const parsedPayload = createTodo.safeParse(createPayload);
   if (!parsedPayload.success) {
-    req.status(411).json({
+    res.status(411).json({
       msg: "You sent the  wrong inputs",
     });
     return;
