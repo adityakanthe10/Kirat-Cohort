@@ -9,9 +9,9 @@ export default function Card({name,description,interest1,interest2,interest3}){
         <p className="description"> {description} </p>
     
         <h2>Interests</h2> 
-        <p className="interest1">Ionic</p>
-        <p className = "interest2">Open Source</p>
-        <p className = "interest3">App Dev</p>
+        <p className="interest1">{interest1}</p>
+        <p className = "interest2">{interest2}</p>
+        <p className = "interest3">{interest3}</p>
     
         <button className= "linkedin">Linkedin</button>
         <button className="twitter">Twitter</button>
