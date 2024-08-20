@@ -1,10 +1,11 @@
-.linkedin,.twitter{
+a{
     color: white;
     background-color: #2563eb;
     padding: 10px;
     font-size: 20px;
     border-radius: 10%;
     margin: 10px;
+    text-decoration: none;
 }
 
 .card{

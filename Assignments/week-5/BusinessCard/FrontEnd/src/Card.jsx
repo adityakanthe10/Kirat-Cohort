@@ -1,6 +1,6 @@
 import "./Card.css"
 
-export default function Card({name,description,interest1,interest2,interest3}){
+export default function Card({name,description,interest1,interest2,interest3,linkedin,twitter}){
 
     
     return(
@@ -13,8 +13,8 @@ export default function Card({name,description,interest1,interest2,interest3}){
         <p className = "interest2">{interest2}</p>
         <p className = "interest3">{interest3}</p>
     
-        <button className= "linkedin">Linkedin</button>
-        <button className="twitter">Twitter</button>
+        <a href={linkedin} target="_blank" className="linkedin">Linkedin</a>
+        <a href={twitter} target="_blank" className="twitter">Twitter</a>
         </div>
     )
 }

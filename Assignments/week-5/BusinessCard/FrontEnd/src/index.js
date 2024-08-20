@@ -6,6 +6,8 @@ export const data = [
     interest1: "Ionic",
     interest2: "Open Source",
     interest3: "App Dev",
+    linkedin: "https://www.linkedin.com/in/aditya-kanthe-a63bb9214/",
+    twitter: "https://x.com/aditya_kanthe",
   },
   {
     id: 2,
@@ -14,5 +16,7 @@ export const data = [
     interest1: "Non-Ionic",
     interest2: "Open Source",
     interest3: "Web Dev",
+    linkedin: "https://www.linkedin.com/in/aditya-kanthe-a63bb9214/",
+    twitter: "https://x.com/aditya_kanthe",
   },
 ];
