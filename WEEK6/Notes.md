@@ -13,3 +13,16 @@
             1. A state variable that is being used inside a component changes .
             2. A parent component re-render triggers all children re-rendering .
         - memo lets you skip re-rendering a component when its props are unchanged .
+
+- Spread Operator (...)
+        - The Javascript spread opertor(...) allows us to quickly copy all or part of an existing array or object into another array or object.
+        - The spread operator is often used in combination with destructuring.
+        - We can use spread operators with objects too.
+
+- Key
+        - React uses your keys to know what happened if you later insert,delete,or reorder the items.
+
+- Wrapper Components.
+        
+- Hooks 
+        -Hooks in React are functions that allow you to "hook into" React state and lifecycle features from function components.
