@@ -62,7 +62,7 @@ Cryptography jargon .
 
   ## Week 3.4 Middleware Recap and Assignments 
 
-  - Express is a routing and middleware web framework that has minimal functionality of its own . An Express Application is essentially a series of middleare function calls .
+  - Express is a routing and middleware web framework that has minimal functionality of its own . An Express Application is essentially a series of middleware function calls .
 
   - Middleware functions are functions that have access to the request object(req), the response object(res), and the next middleware function in the applications request-response cycle. The next middleware function is commonly denoted by a variable named next .
 
