@@ -61,4 +61,37 @@ The useEffect hook in React.js is used to perform side effects in functional com
       Optimizing Components: It's particularly useful for optimizing performance in components that rely on heavy computations or when passing computed values as props to child components.
 
 - useCallback -
- 
+      usecallback is a hook in react ,a popoular javascript library for building user interfaces. It is used to memoize functions, which can help in optimizing the performance of your application, especially in cases involving child components that rely on reference equality to prevent unneccessary renders.
+
+  - Syntax
+
+          const memoizedCallback = useCallback(() => {
+          // your callback function code
+          }, [dependency1, dependency2, ...]);
+
+  - Usage -
+    - Use useCallback when you need to memoize a function to prevent unnecessary re-renders of child components.
+
+  - In summary, useCallback is an optimization tool in React that helps you avoid re-creating functions unnecessarily and can be particularly helpful in performance-critical applications.
+
+- Custom Hooks -
+
+    - Just like useState,useEffect ,you can write your own hooks.Only condition is ,it should start with a use(naming convention). 
+
+    - A custom hook in React is a JavaScript function whose name starts with "use" and that can call other hooks. Custom hooks allow you to extract and reuse logic across multiple components, making your code more modular and easier to manage.
+
+  - Why Use Custom Hooks?
+
+    Code Reusability: Custom hooks enable you to reuse stateful logic across different components without repeating code.
+
+    Separation of Concerns: They allow you to encapsulate logic that deals with state and side effects separately from your components' rendering logic.
+
+    Cleaner Code: Custom hooks help to keep components clean and focused on UI logic, as the stateful logic is moved to the custom hook.
+
+  - <b>How to Create a Custom Hook</b>
+
+    A custom hook is a function that:
+
+    1. Starts with the prefix use (e.g., useCustomHook).
+    2. Can use other hooks like useState, useEffect, useContext, etc.
+    3. Returns data or functions that your component can use.
