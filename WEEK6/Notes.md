@@ -95,3 +95,11 @@ The useEffect hook in React.js is used to perform side effects in functional com
     1. Starts with the prefix use (e.g., useCustomHook).
     2. Can use other hooks like useState, useEffect, useContext, etc.
     3. Returns data or functions that your component can use.
+
+## Week 6.3  React re-cap
+
+- Reconciliation
+
+- useRef 
+
+    - In React, useRef is a hook that allows you to persist values across renders without causing a re-render. It’s commonly used for directly accessing or manipulating DOM elements or for keeping mutable objects that don't trigger re-renders when changed.
