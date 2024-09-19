@@ -40,9 +40,9 @@ Practise create a todo app that lets users store todos on the server.
 
 - Status codes
 
-1. 200 - Everythin went fine .
+1. 200 - Everything went fine .
 2. 404 - Doctor is not in the hospital .
-3. 500 -Mid surgery light went away .
+3. 500 - Mid surgery light went away .
 4. 411 - Inputs were incorrect,wrong person came to surgery.
 5. 403 - you were not allowed in the hospital .
 

@@ -75,7 +75,7 @@
 // Callback Syntax
 
 // function kiratsAsyncFunction(callback) {
-//   // do some aync logic here
+//   // do some async logic here
 //   callback("hi there");
 // }
 

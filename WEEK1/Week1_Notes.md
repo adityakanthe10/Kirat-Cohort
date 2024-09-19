@@ -1,6 +1,6 @@
 
 1. Languages are used to write applications.
-2. Developeres write high level code in these languages.
+2. Developers write high level code in these languages.
 3. Every language has a compiler which converts the developer code into 01 .
 
 Compiled Languages
