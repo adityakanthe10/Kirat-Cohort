@@ -18,4 +18,24 @@
 
     - useContext reads and subscribes to a context.
         
-            - function Button() {const theme = useContext(ThemeContext);// ..
+            - function Button() {const theme = useContext(ThemeContext); }// ..
+
+## WEEK 7.2 Context,State Management,recoil 
+
+- Context
+(Doesn't fix re-rendering , only fixes prop drilling )
+    - More strictier state management would come that would  take away the problem of whoever is not using the state variable does not re-render only the component that are using the state variable re-render .(state management libraries let us do this)
+    - We use context api to make syntax cleaner and get rid of context api.
+
+ - State Management using Recoil 
+    - A cleaner way to store the state of your app.
+    - Until now, the cleanest thing you cna do is use the Context API.
+    - It lets you teleport state.
+    - But there are better solutions that get rid of the problems that context api has (unnecessary re-renders)
+
+- Recoil (A State Management Library) 
+    
+    - Has a concept of an atom to store the state .
+    - An atom can be defined outside the component .
+    - Can be teloperted to any component . 
+
