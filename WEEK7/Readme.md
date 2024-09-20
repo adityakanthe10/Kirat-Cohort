@@ -39,3 +39,11 @@
     - An atom can be defined outside the component .
     - Can be teloperted to any component . 
 
+    - ( RecoilRoot,atom,useRecoilState,useRecoilValue,useSetRecoilState,selector)
+        - Recoil gave access to 3 hooks
+        1. useRecoilState - Exactly similar to useState .A. two things current value and update the  value
+        2. useRecoilValue - which gives just tht value.
+        3. useSetRecoilValue - gives only want to update the value .
+
+    - A selector represents a piece of derived state.You can think of derived state as the output of passing state of a pure function that derives a new value from the said state.  
+
