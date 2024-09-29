@@ -4,16 +4,10 @@ import "./index.css"
 const App = () => {
   return (
     <>
-    <div style={{display:"flex", justifyContent:"space-between"}}>
-    <div style={{backgroundColor:"red"}}>hi</div>
-    <div style={{backgroundColor:"yellow"}}>hi</div>
-    <div style={{backgroundColor:"green"}}>hi</div>
-    </div>
-
-    <div className="flex justify-between">
-    <div className>hi</div>
-    <div style={{backgroundColor:"yellow"}}>hi</div>
-    <div className>hi</div>
+    <div className="grid grid-cols-5">
+      <div className="bg-red-500 col-span-2">hi</div>
+      <div className="bg-red-500 col-span-2">hi</div>
+      <div className="bg-red-500">hi</div>
     </div>
     </>
   )
