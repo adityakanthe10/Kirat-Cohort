@@ -1,5 +1,5 @@
 {
-  "name": "5-githubinfocard",
+  "name": "week8-1-1",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -25,7 +25,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
+    "tailwindcss": "^3.4.13",
     "vite": "^5.4.1"
   }
 }
