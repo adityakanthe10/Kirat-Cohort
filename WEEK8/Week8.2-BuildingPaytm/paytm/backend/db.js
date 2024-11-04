@@ -2,11 +2,15 @@
 
 const mongoose = require("mongoose");
 
+mongoose.connect(
+  "mongodb+srv://adityakanthe10:ZEnp7QgoNfjKw3TI@cluster0.jgdz0.mongodb.net/Pay-TM"
+);
+
 // Creating a schema for users
 
 const userSchema = new mongoose.Schema({
   userName: {
-    type: string,
+    type: String,
     required: true,
     unique: true,
     trim: true,
@@ -14,18 +18,18 @@ const userSchema = new mongoose.Schema({
     maxLength: 30,
   },
   password: {
-    type: string,
+    type: String,
     require: true,
     minLength: 6,
   },
   firstName: {
-    type: string,
+    type: String,
     require: true,
     trim: true,
     maxLength: 50,
   },
   lastName: {
-    type: string,
+    type: String,
     require: true,
     trim: true,
     maxLength: 50,
@@ -48,7 +52,7 @@ const accountSchema = new mongoose.Schema({
 
 // Creating a Model
 
-const userModel = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 const Account = mongoose.model("Account", accountSchema);
 
 module.exports = {
