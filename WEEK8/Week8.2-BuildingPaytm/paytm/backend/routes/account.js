@@ -3,7 +3,9 @@ const zod = require("zod");
 const router = express.Router();
 const { Account } = require("../db");
 const { authMiddleware } = require("../middleware");
+const { default: mongoose } = require("mongoose");
 
+// endpoint for users to get their balance
 router.get("/balance", authMiddleware, async (req, res) => {
   const account = await Account.findOne({
     userId: req.userId,
@@ -13,6 +15,7 @@ router.get("/balance", authMiddleware, async (req, res) => {
   });
 });
 
+// An endpoint for users to transfer money to another account
 router.post("/transfer", authMiddleware, async (req, res) => {
   const session = await mongoose.startSession();
 

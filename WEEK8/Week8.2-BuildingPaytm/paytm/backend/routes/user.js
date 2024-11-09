@@ -2,10 +2,14 @@ const { authMiddleware } = require("../middleware");
 const express = require("express");
 const zod = require("zod");
 const router = express.Router();
+const { User } = require("../db");
+const { Account } = require("../db");
+const { JWT_SECRET } = require("../config");
+const jwt = require("jsonwebtoken");
 
 // schema validation for signup
 const signUpSchema = zod.object({
-  userName: zod.string().email(),
+  username: zod.string().email(),
   password: zod.string(),
   firstName: zod.string(),
   lastName: zod.string(),
@@ -14,51 +18,53 @@ const signUpSchema = zod.object({
 // backend auth route to signup
 router.post("/signup", async (req, res) => {
   const body = req.body;
-  const success = signUpSchema.safeParse().body;
+  const success = signUpSchema.safeParse(req.body);
 
   if (!success) {
     return res.json({
       message: "incorrect username /user already exists",
+      error: error,
     });
-
-    const existingUser = await User.findOne({
-      username: req.body.username,
-    });
-
-    if (existingUser) {
-      return res.status(411).json({
-        message: "user already exists! ",
-      });
-    }
-
-    const user = await User.Create({
-      username: req.body.username,
-      password: req.body.password,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-    });
-
-    const userId = user._id;
-
-    //  create a new account
-
-    await Account.create({
-      userId,
-      balance: 1 + Math.random() * 10000,
-    });
-
-    const token = jwt.sign(
-      {
-        userId,
-      }.JWT_SECRET
-    );
   }
+
+  const existingUser = await User.findOne({
+    username: req.body.username,
+  });
+
+  if (existingUser) {
+    return res.status(411).json({
+      message: "user already exists! ",
+    });
+  }
+
+  const user = await User.create({
+    username: req.body.username,
+    password: req.body.password,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+  });
+
+  const userId = user._id;
+
+  //  create a new account
+
+  await Account.create({
+    userId,
+    balance: 1 + Math.random() * 10000,
+  });
+
+  const token = jwt.sign(
+    {
+      userId,
+    },
+    JWT_SECRET
+  );
 });
 
 // schema validation for signin
 
 const signInSchema = zod.object({
-  userName: zod.string().email(),
+  username: zod.string().email(),
   password: zod.string(),
 });
 
@@ -73,8 +79,8 @@ router.post("/signin", async (req, res) => {
       message: "incorrect username / password",
     });
   }
-  const user = await user.findOne({
-    userName: req.body.userName,
+  const user = await User.findOne({
+    username: req.body.username,
     password: req.body.password,
   });
 

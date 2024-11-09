@@ -14,5 +14,5 @@ function isAnagram(str1, str2) {
   }
 }
 
-// console.log(isAnagram("listen", "silent"));
-module.exports = isAnagram;
+console.log(isAnagram("listen", "silent"));
+// module.exports = isAnagram;

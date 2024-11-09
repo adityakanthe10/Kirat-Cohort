@@ -9,7 +9,7 @@ mongoose.connect(
 // Creating a schema for users
 
 const userSchema = new mongoose.Schema({
-  userName: {
+  username: {
     type: String,
     required: true,
     unique: true,
@@ -19,18 +19,18 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    require: true,
+    required: true,
     minLength: 6,
   },
   firstName: {
     type: String,
-    require: true,
+    required: true,
     trim: true,
     maxLength: 50,
   },
   lastName: {
     type: String,
-    require: true,
+    required: true,
     trim: true,
     maxLength: 50,
   },
