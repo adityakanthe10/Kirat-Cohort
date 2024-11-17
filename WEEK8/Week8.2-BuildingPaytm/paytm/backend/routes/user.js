@@ -59,6 +59,11 @@ router.post("/signup", async (req, res) => {
     },
     JWT_SECRET
   );
+
+  res.json({
+    message: "user Created successfully",
+    token: token,
+  });
 });
 
 // schema validation for signin

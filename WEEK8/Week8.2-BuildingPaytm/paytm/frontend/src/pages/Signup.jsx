@@ -13,6 +13,7 @@ export const Signup = () => {
   const [username, setusername] = useState(" ");
   const [lastName, setLastName] = useState(" ");
   const [password, setPassword] = useState(" ");
+  const [item, setItem] = useState(" ");
 
   return (
     <div className="bg-slate-300 h-screen flex justify-center">
@@ -51,12 +52,17 @@ export const Signup = () => {
           <div className="pt-4">
             <Button
               onClick={() => {
-                axios.post("http://localhost:3000/api/v1/user/signup", {
-                  username,
-                  password,
-                  firstName,
-                  lastName,
-                });
+                const response = axios.post(
+                  "http://localhost:3000/api/v1/user/signup",
+                  {
+                    username,
+                    password,
+                    firstName,
+                    lastName,
+                  }
+                );
+                localStorage.setItem("token", response.data.token);
+                localStorage.delete("token");
               }}
               label={"Sign up"}
             />
