@@ -15,6 +15,3 @@
 12. Balance and transfer Endpoints .
 13. Checkpoint your solutions .
 
-- MongoDB Database 
-    url - mongodb+srv://adityakanthe10:<db_password>@cluster0.jgdz0.mongodb.net/
-    password - ZEnp7QgoNfjKw3TI
