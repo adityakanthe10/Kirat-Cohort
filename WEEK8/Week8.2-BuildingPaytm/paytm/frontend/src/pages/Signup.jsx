@@ -14,6 +14,7 @@ export const Signup = () => {
   const [lastName, setLastName] = useState(" ");
   const [password, setPassword] = useState(" ");
   const [item, setItem] = useState(" ");
+  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-300 h-screen flex justify-center">
@@ -52,17 +53,32 @@ export const Signup = () => {
           <div className="pt-4">
             <Button
               onClick={() => {
-                const response = axios.post(
-                  "http://localhost:3000/api/v1/user/signup",
-                  {
+                const response = axios
+                  .post("http://localhost:3000/api/v1/user/signup", {
                     username,
                     password,
                     firstName,
                     lastName,
-                  }
-                );
+                  })
+                  .then((response) => {
+                    console.log(response); // Log the entire response object
+                    if (response.data && response.data.token) {
+                      localStorage.setItem("token", response.data.token);
+                      navigate("/dashboard");
+                    } else {
+                      console.error(
+                        "Token not found in the response",
+                        response
+                      );
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error during signup:", error);
+                  });
+
                 localStorage.setItem("token", response.data.token);
                 localStorage.delete("token");
+                navigate("/dashboard");
               }}
               label={"Sign up"}
             />
