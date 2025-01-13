@@ -1,7 +1,7 @@
 {
   "name": "week10.1",
   "version": "1.0.0",
-  "description": "1. NoSQL Databases\r - Store data in a schema-less fashion. Extremely lean and fast way to store data .\r - E.g. MongoDB",
+  "description": "- We might think that mongoose does add strictness to the codebase because we used to define schema there.\r - That strictness is present at the Node.js level, not at the DB level. You can still put in erroneous data in the database that doesn't follow that schema.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

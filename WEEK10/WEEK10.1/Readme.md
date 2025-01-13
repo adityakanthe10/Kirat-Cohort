@@ -1,33 +1,20 @@
-<!-- 1:12:22 -->
+# WEEK 10.1 Postgres,Prisma
 
-# Week 10.1 Postgres
+- We might think that mongoose does add strictness to the codebase because we used to define schema there.
+- That strictness is present at the Node.js level, not at the DB level. You can still put in erroneous data in the database that doesn't follow that schema.
 
-1. NoSQL Databases
-- Store data in a schema-less fashion. Extremely lean and fast way to store data .
-- E.g. MongoDB
+## WHY SQL?
 
-2. Graph Databases
-- Data is stored in the form of a graph. Specially used where the relationships need to be stored . 
-- E.g. Neo4j
+### SQL Database have a strict schema. They require you to 
 
-3. Vector Databases
--  Text -> Embedding Model -> Object as vectors -> Vector Databases
-- E.g. AI Applications 
+1. Define your schema.
+2. Put in data that follows that schema.
+3. Update your schema as your app changes and perform migrations.
 
-4. SQL Databases
-- Stores data in the form of rows .
-- E.g. MySQL,Postgres
-
-
-## SQL DATABASES
-
-- SQL Databases have a strict schema. They require you to 
-    1. Define your schema .
-    2. Put in data that follows that schema .
-    3. Update the schema as your app changes and perform migrations .
-
-- So there are 4 parts when using an SQL database (not connecting to Node.js, just runninğit and putting data in it)
-    1. Running the database .
-    2. Using a library that let's you connect and put data in it.
-    3. Creating a table and defining it's schema.
-    4. Run queries on the database to interact with the data (Insert/Update/Delete).
+- So there are 4 parts when using an SQL database (not connecting it to Node.js, just running it and putting data in it)
+1. Running the database.
+2. Using a library that let’s you connect and put data in it.
+3. Creating a table and defining it’s schema.
+4. Run queries on the database to interact with the data (Insert/Update/Delete)
+ 
+ - pg is a Node.js library that you can use in your backend app to store the data in the Postgres DB (similar to mongoose)
