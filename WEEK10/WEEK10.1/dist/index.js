@@ -1,5 +1,4 @@
 "use strict";
-// write a function to create a users table in your database.
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -10,15 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// 1.Connecting to the database and adding the credentials
 const pg_1 = require("pg");
-const client = new pg_1.Client({
+const createClient = () => new pg_1.Client({
     host: "localhost",
     port: 5432,
     database: "postgres",
     user: "postgres",
     password: "mysecretpassword",
 });
+// write a function to create a users table in your database.
 const createUsersTable = () => __awaiter(void 0, void 0, void 0, function* () {
+    const client = createClient();
     try {
         // Connect to the database
         yield client.connect();
@@ -44,5 +46,23 @@ const createUsersTable = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log("Disconnected from the database");
     }
 });
-// Call the function to create the table
+//Call the function to create the table
 createUsersTable();
+// Write a function getUser that lets you fetch data from the database given a email as input.
+const getUsers = (username, email, password) => __awaiter(void 0, void 0, void 0, function* () {
+    const client = createClient();
+    try {
+        yield client.connect();
+        const insertQuery = " INSERT INTO users (username,email,password) VALUES($1,$2,$3)";
+        const values = [username, email, password];
+        const res = yield client.query(insertQuery, values);
+        console.log(`insertion successful ` + res);
+    }
+    catch (error) {
+        console.log(`Error during the insertion ` + error);
+    }
+    finally {
+        yield client.end();
+    }
+});
+getUsers("abhijeet", "abhijeetkanthr12@gmail.com", "Abhijeet@1234");
