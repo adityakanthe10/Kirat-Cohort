@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client/edge';
-import { withAccelerate } from '@prisma/extension-accelerate';
+import { PrismaClient } from "@prisma/client/edge";
+import { withAccelerate } from "@prisma/extension-accelerate";
 
-import { Context } from 'hono';
+import { Context } from "hono";
 
 enum StatusCode {
   BADREQ = 400,
@@ -45,7 +45,7 @@ export async function getUserPosts(c: Context) {
   try {
     const resp = await prisma.posts.findMany({
       where: {
-        userId: c.get('userId'),
+        userId: c.get("userId"),
       },
     });
     return c.json({
@@ -68,16 +68,16 @@ export async function createPost(c: Context) {
       tags: string;
     } = await c.req.json();
 
-    const tagNames = body.tags.split(',').map((tag) => tag.trim());
+    const tagNames = body.tags.split(",").map((tag) => tag.trim());
 
     if ((body.body && body.title) == null) {
-      return c.body('Invalid user input', StatusCode.BADREQ);
+      return c.body("Invalid user input", StatusCode.BADREQ);
     }
     const res = await prisma.posts.create({
       data: {
         title: body.title,
         body: body.body,
-        userId: c.get('userId'),
+        userId: c.get("userId"),
         tags: {
           connectOrCreate: tagNames.map((tag) => ({
             where: { tag },
@@ -91,7 +91,7 @@ export async function createPost(c: Context) {
     });
 
     return c.json({
-      message: 'Post successfully',
+      message: "Post successfully",
       post: {
         id: res.id,
         title: res.title,
@@ -111,12 +111,12 @@ export async function getPost(c: Context) {
   }).$extends(withAccelerate());
 
   try {
-    const id: number = Number(c.req.param('id'));
+    const id: number = Number(c.req.param("id"));
 
     const isPostExist = await prisma.posts.findFirst({
       where: {
         id: id,
-        userId: c.get('userId'),
+        userId: c.get("userId"),
       },
       include: {
         tags: true,
@@ -124,7 +124,7 @@ export async function getPost(c: Context) {
     });
 
     if (isPostExist == null) {
-      return c.body('Post does not exists', StatusCode.NOTFOUND);
+      return c.body("Post does not exists", StatusCode.NOTFOUND);
     }
     return c.json({
       data: {
@@ -147,7 +147,7 @@ export async function updatePost(c: Context) {
   }).$extends(withAccelerate());
 
   try {
-    const id: number = Number(c.req.param('id'));
+    const id: number = Number(c.req.param("id"));
 
     const body: {
       title: string;
@@ -155,23 +155,23 @@ export async function updatePost(c: Context) {
       tags: string;
     } = await c.req.json();
 
-    const tagNames = body.tags.split(',').map((tag) => tag.trim());
+    const tagNames = body.tags.split(",").map((tag) => tag.trim());
 
     const isPostExist = await prisma.posts.findFirst({
       where: {
         id: id,
-        userId: c.get('userId'),
+        userId: c.get("userId"),
       },
     });
 
     if (isPostExist == null) {
-      return c.body('Post does not exists', StatusCode.NOTFOUND);
+      return c.body("Post does not exists", StatusCode.NOTFOUND);
     }
 
     const res = await prisma.posts.update({
       where: {
         id: id,
-        userId: c.get('userId'),
+        userId: c.get("userId"),
       },
       data: {
         title: body.title,
@@ -208,27 +208,27 @@ export async function deletePost(c: Context) {
   }).$extends(withAccelerate());
 
   try {
-    const id: number = Number(c.req.param('id'));
+    const id: number = Number(c.req.param("id"));
 
     const isPostExist = await prisma.posts.findFirst({
       where: {
         id: id,
-        userId: c.get('userId'),
+        userId: c.get("userId"),
       },
     });
 
     if (isPostExist == null) {
-      return c.body('Post does not exists', StatusCode.NOTFOUND);
+      return c.body("Post does not exists", StatusCode.NOTFOUND);
     }
 
     const res = await prisma.posts.delete({
       where: {
         id: id,
-        userId: c.get('userId'),
+        userId: c.get("userId"),
       },
     });
     return c.json({
-      message: 'post deleted',
+      message: "post deleted",
     });
   } catch (error) {
     return c.json({ msg: `Internal server error: ${error}` }, 500);

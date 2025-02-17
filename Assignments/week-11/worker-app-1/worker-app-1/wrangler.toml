@@ -1,0 +1,3 @@
+DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYTIyYjMxYWEtZDI3NC00MTM2LTk4NzUtNjRmMmZiOGM5OGNmIiwidGVuYW50X2lkIjoiNjM3YjQyYzM5NDM0MWRhYWJhM2IzMTNiYjVjZDBiNmE3MWRhOWZkMWM3ZjFmZGZmNDBhZmVhMzIzZDI2ZjA0ZCIsImludGVybmFsX3NlY3JldCI6IjI4MzZmMGYxLWMwOGItNGVlMS1hZTU5LTZmOGYxMTQxZTQxYyJ9.biujqGeKXlsw7d_nQVybMPjoEmpBURqsMblvIlH_Opw"
+DIRECT_URL = "postgresql://neondb_owner:npg_mWvpC4hfd1IL@ep-sparkling-feather-a1m6xc69-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+JWT_TOKEN = "AdityaKanthe"
