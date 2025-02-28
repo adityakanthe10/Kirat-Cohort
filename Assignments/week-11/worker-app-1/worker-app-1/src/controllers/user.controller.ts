@@ -11,16 +11,23 @@ enum StatusCode {
   SERVERERROR = 500,
 }
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL, // This should now correctly reference the env variable
-    },
-  },
-}).$extends(withAccelerate());
+// const prisma = new PrismaClient({
+//   datasources: {
+//     db: {
+//       url: env.DATABASE_URL, // This should now correctly reference the env variable
+//     },
+//   },
+// }).$extends(withAccelerate());
 
 export const signUp = async (c: Context) => {
   // Initialize the prisma client
+  const prisma = new PrismaClient({
+    datasources: {
+      db: {
+        url: c.env.DATABASE_URL,
+      },
+    },
+  }).$extends(withAccelerate());
 
   try {
     //Parsing the request Body

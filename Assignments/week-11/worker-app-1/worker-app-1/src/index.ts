@@ -9,6 +9,6 @@ const app = new Hono();
 // })
 
 app.route("/api/v1/user", user);
-app.route("/api/v1/todo", user);
+// app.route("/api/v1/todo", user);
 
 export default app;

@@ -11,6 +11,7 @@ dist/
 .idea/usage.statistics.xml
 .idea/shelf
 
+
 # deps
 node_modules/
 .wrangler
@@ -19,6 +20,7 @@ node_modules/
 .env
 .env.production
 .dev.vars
+.wrangler.toml
 
 # logs
 logs/
