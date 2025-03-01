@@ -1,7 +1,7 @@
 import { Context } from "hono";
-import { PrismaClient } from "@prisma/client/edge";
+import { Prisma, PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { signupSchema } from "../zod/user";
+import { signupSchema, signinSchema } from "../zod/user";
 import { Jwt } from "hono/utils/jwt";
 
 enum StatusCode {
@@ -11,15 +11,9 @@ enum StatusCode {
   SERVERERROR = 500,
 }
 
-// const prisma = new PrismaClient({
-//   datasources: {
-//     db: {
-//       url: env.DATABASE_URL, // This should now correctly reference the env variable
-//     },
-//   },
-// }).$extends(withAccelerate());
-
 export const signUp = async (c: Context) => {
+  console.log("Status Code", StatusCode);
+  console.log(c.env.DATABASE_URL, "env database url");
   // Initialize the prisma client
   const prisma = new PrismaClient({
     datasources: {
@@ -33,9 +27,10 @@ export const signUp = async (c: Context) => {
     //Parsing the request Body
     const body: { username: string; email: string; password: string } =
       await c.req.json();
+    console.log(body, "body");
     //Validating input using signupSchema
     const parsedSchema = signupSchema.safeParse(body);
-
+    console.log("parsed Schema", parsedSchema);
     if (!parsedSchema.success) {
       return c.json(
         { message: "Invalid username or password" },
@@ -46,7 +41,7 @@ export const signUp = async (c: Context) => {
     const isUserExist = await prisma.user.findFirst({
       where: { email: body.email },
     });
-
+    console.log("Is user exist:", isUserExist);
     if (isUserExist) {
       return c.json({ message: "Email already exists" }, StatusCode.BADREQ);
     }
@@ -58,11 +53,29 @@ export const signUp = async (c: Context) => {
         password: body.password,
       },
     });
+    console.log("User created:", res);
 
     //Generating a JWT TOken
     const userId = res.id;
 
+    if (!userId) {
+      console.log("User ID is undefined!");
+      return c.json(
+        { message: "Internal Server Error: User ID is missing" },
+        StatusCode.SERVERERROR
+      );
+    }
+
+    if (!c.env.JWT_TOKEN) {
+      console.log("JWT_TOKEN is missing in environment variables!");
+      return c.json(
+        { message: "Internal Server Error: Missing JWT token" },
+        StatusCode.SERVERERROR
+      );
+    }
+
     const token = await Jwt.sign(userId, c.env.JWT_TOKEN);
+    console.log("Generated token:", token);
 
     return c.json({
       msg: "User created successfully",
@@ -78,6 +91,70 @@ export const signUp = async (c: Context) => {
     //Error Handling
     return c.json(
       { message: `Internal Server Error : ${error}` },
+      StatusCode.SERVERERROR
+    );
+  }
+};
+
+export const signIn = async (c: Context) => {
+  // Initialize the prisma client
+
+  const databaseUrl = c.env.DATABASE_URL;
+  console.log("c.env", databaseUrl);
+
+  const prisma = new PrismaClient({
+    datasources: {
+      db: {
+        url: databaseUrl,
+      },
+    },
+  }).$extends(withAccelerate());
+
+  try {
+    const body: {
+      email: string;
+      password: string;
+    } = await c.req.json();
+    // parsing the request body
+    const parsedSchema = signinSchema.safeParse(body);
+
+    if (!parsedSchema.success) {
+      return c.body("Invalid Email Id or Password", StatusCode.BADREQ);
+    }
+    // Finding if user exists
+    const responseIsUser = await prisma.user.findFirst({
+      where: {
+        email: body.email,
+        password: body.password,
+      },
+    });
+    console.log("responseIsUser", responseIsUser);
+    if (responseIsUser == null) {
+      return c.body("User does not exists", StatusCode.BADREQ);
+    }
+    // Generating a token
+
+    const userId = responseIsUser?.id;
+
+    const token = await Jwt.sign(userId, c.env.JWT_TOKEN);
+    // Returning a response
+
+    return c.json({
+      message: "user Logged in Successfully",
+      token: token,
+      user: {
+        userId: userId,
+        username: responseIsUser.username,
+        password: responseIsUser.password,
+      },
+    });
+  } catch (error) {
+    // Error handling
+    return c.json(
+      {
+        message: "Internal Server Error",
+        error,
+      },
       StatusCode.SERVERERROR
     );
   }
