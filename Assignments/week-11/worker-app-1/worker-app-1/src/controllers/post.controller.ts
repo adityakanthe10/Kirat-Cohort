@@ -144,7 +144,29 @@ export const updatePost = async (c: Context) => {
       },
     });
 
-    if(isPostExist == null)
+    if (isPostExist == null) {
+      return c.json("Post does not exist", StatusCode.NOTFOUND);
+    }
+
+    const res = await prisma.post.update({
+      where:{
+        id:id,
+        userId:c.get("userId"),
+      }
+      data:{
+        title:body.title,
+        body:body.body
+      }
+    })
+
+    return c.json({
+      data:{
+        id:res.id,
+        title:res.title,
+        body:res.body,
+        createdAt:res.createdAt,
+      }
+    })
   } catch (error) {
     return c.json(
       {
