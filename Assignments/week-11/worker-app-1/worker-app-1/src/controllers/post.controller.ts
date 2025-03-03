@@ -149,29 +149,73 @@ export const updatePost = async (c: Context) => {
     }
 
     const res = await prisma.post.update({
-      where:{
-        id:id,
-        userId:c.get("userId"),
-      }
-      data:{
-        title:body.title,
-        body:body.body
-      }
-    })
+      where: {
+        id: id,
+        userId: c.get("userId"),
+      },
+      data: {
+        title: body.title,
+        body: body.body,
+      },
+    });
 
     return c.json({
-      data:{
-        id:res.id,
-        title:res.title,
-        body:res.body,
-        createdAt:res.createdAt,
-      }
-    })
+      data: {
+        id: res.id,
+        title: res.title,
+        body: res.body,
+        createdAt: res.createdAt,
+      },
+    });
   } catch (error) {
     return c.json(
       {
         message: `Internal Server Error,${error}`,
       },
+      StatusCode.SERVERERROR
+    );
+  }
+};
+
+export const deletePost = async (c: Context) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const id: Number = Number(c.req.param("id"));
+
+    const isPostExist = await prisma.post.findFirst({
+      where: {
+        id: id,
+        userId: c.get("userId"),
+      },
+    });
+
+    if (isPostExist == null) {
+      return (
+        c.json({
+          message: "Post does not exist",
+        }),
+        StatusCode.BADREQ
+      );
+    }
+
+    const res = await prisma.post.delete({
+      where: {
+        id: id,
+        userId: c.get("userId"),
+      },
+    });
+
+    return c.json({
+      message: "Post deleted successfully",
+    });
+  } catch (error) {
+    return (
+      c.json({
+        message: "Internal Server Error",
+      }),
       StatusCode.SERVERERROR
     );
   }
