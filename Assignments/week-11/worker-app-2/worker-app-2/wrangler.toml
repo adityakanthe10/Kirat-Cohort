@@ -1,0 +1,8 @@
+name = "worker-app-2"
+main = "src/index.ts"
+compatibility_date = "2025-02-18"
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiZjJhZDExNzQtNTcxYi00NmU4LTkzMmYtYmUzZjY4ZThkNDNhIiwidGVuYW50X2lkIjoiMWRjMTIwNzc5NWY3MDMyYzFlM2ZjYjQ2YjYyYzhiODBmZjY0OWExMGRjNjNlMjgyNDY4YmNjMDAzMjMzMDc4ZSIsImludGVybmFsX3NlY3JldCI6ImMzZTE3YThiLTlhMTAtNDY2YS05ZDE5LWFlYmZjYWRkODQxMyJ9.NH6j1IF77igf3Gt__wVhBJHERolSUd_R2Kg5hiYq7Pg"
+DIRECT_URL = "postgresql://neondb_owner:npg_Qtfbuwq52eGd@ep-summer-leaf-a1x5de8f-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+JWT_TOKEN = "AdityaKanthe"
