@@ -1,0 +1,30 @@
+{
+	"name": "prisma-cloudflare-worker-example",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.7.5",
+		"@cloudflare/workers-types": "^4.20250311.0",
+		"@types/node": "^22.13.10",
+		"@types/pg": "^8.11.11",
+		"prisma": "^6.5.0",
+		"typescript": "^5.5.2",
+		"vitest": "~3.0.7",
+		"wrangler": "^3.114.1"
+	},
+	"dependencies": {
+		"@prisma/adapter-pg": "^6.5.0",
+		"@prisma/client": "^6.5.0",
+		"@prisma/extension-accelerate": "^1.2.2",
+		"dotenv": "^16.4.7",
+		"hono": "^4.7.4",
+		"pg": "^8.14.0"
+	}
+}
