@@ -19,6 +19,45 @@ class SurveyController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async getByIdSurveys(req, res) {
+    try {
+      const surveyId = Number(req.params.id);
+      const survey = await SurveyModel.getByIdSurveys(surveyId);
+      if (!survey) {
+        return res.status(404).json({ message: error.message });
+      }
+      res.status(201).json(survey);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  async updateSurvey(req, res) {
+    try {
+      const surveyId = Number(req.params.id);
+      const updatedSurvey = await SurveyModel.updateSurvey(
+        {
+          surveyId,
+        },
+        req.body
+      );
+      res.status(201).json(updatedSurvey);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
+
+  async deleteSurvey(req, res) {
+    try {
+      const surveyId = Number(req.params.id);
+      const deletedSurvey = await SurveyModel.deleteSurvey(surveyId);
+      console.log(deletedSurvey);
+      res.status(201).json({ msg: "Survey Deleted Successsfully" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = new SurveyController();
