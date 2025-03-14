@@ -1,0 +1,11 @@
+
+name = "backend"
+type = "typescript"
+account_id = " af1994e43fc60edfb2b364519b0507a3"
+workers_dev = true
+compatibility_date = "2025-03-12"
+
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiODNiM2ZkYmUtZTA2ZS00ZmQ2LWE1NmUtYTNlYzIzM2Y1Y2QzIiwidGVuYW50X2lkIjoiM2Y4NGRkODYzNWM4OGQwMmNkOGVkZjNjZGU3MTA3NDI4MTVhMzI1NjExNjE1N2U1MDFiMTZmZmQzNmY1MmRmYiIsImludGVybmFsX3NlY3JldCI6ImMzMjVmMjhhLWJlOWUtNDE5Ny1iN2Y4LTVlN2ZhNDIzZmUyOSJ9.3cXgMzrDJJBEPjW__F2GSheiVYzJq-I16iWdVT_GT2U"
+JWT_SECRET = "Aditya_Medium_Blog"

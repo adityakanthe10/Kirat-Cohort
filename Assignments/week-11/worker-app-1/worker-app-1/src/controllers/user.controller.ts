@@ -74,7 +74,7 @@ export const signUp = async (c: Context) => {
       );
     }
 
-    const token = await Jwt.sign(userId, c.env.JWT_TOKEN);
+    const token = await Jwt.sign({ id: userId }, c.env.JWT_TOKEN);
     console.log("Generated token:", token);
 
     return c.json({
@@ -136,7 +136,7 @@ export const signIn = async (c: Context) => {
 
     const userId = responseIsUser?.id;
 
-    const token = await Jwt.sign(userId, c.env.JWT_TOKEN);
+    const token = await Jwt.sign({ id: userId }, c.env.JWT_TOKEN);
     // Returning a response
 
     return c.json({
@@ -145,7 +145,7 @@ export const signIn = async (c: Context) => {
       user: {
         userId: userId,
         username: responseIsUser.username,
-        password: responseIsUser.password,
+        // password: responseIsUser.password,
       },
     });
   } catch (error) {
