@@ -5,14 +5,18 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
+    "@adityakanthe2024/complete-medium-commmon": "^1.0.0",
+    "@adityakanthe2024/final-medium-commmon": "^1.0.0",
+    "@adityakanthe2024/medium-commmon": "^1.0.0",
     "@prisma/client": "^6.5.0",
     "@prisma/extension-accelerate": "^1.2.2",
     "hono": "^4.7.4",
     "jsonwebtoken": "^9.0.2",
+    "medium-common": "^1.0.3",
     "prisma": "^6.5.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250214.0",
-    "wrangler": "^3.109.2"
+    "wrangler": "^4.0.0"
   }
 }

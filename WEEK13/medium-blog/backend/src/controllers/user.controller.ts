@@ -1,8 +1,13 @@
 import { Hono } from "hono";
 import { Context } from "hono";
 import { sign, verify } from "hono/jwt";
+// import { signupInput } from "../../../common/src/index";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import {
+  signupInput,
+  signinInput,
+} from "@adityakanthe2024/complete-medium-commmon";
 
 const app = new Hono<{
   Bindings: {
@@ -10,32 +15,6 @@ const app = new Hono<{
     JWT_SECRET: string;
   };
 }>();
-
-app.use("/user", async (c, next) => {
-  try {
-    const header = c.req.header("authorization") || "";
-    console.log("Authorization Header:", header);
-
-    const token = header.split(" ")[1];
-    console.log("Extracted Token:", token);
-
-    const verifiedToken = await verify(token, c.env.JWT_SECRET);
-    console.log("Verified Token:", verifiedToken);
-
-    if (verifiedToken.id) {
-      console.log("Token verification successful");
-      next();
-    } else {
-      console.log("Unauthorized access");
-      c.status(403);
-      return c.json({ error: "unauthorized" });
-    }
-  } catch (error) {
-    console.error("Error in middleware:", error);
-    c.status(500);
-    return c.json({ error: "Internal Server Error" });
-  }
-});
 
 export const signup = async (c: Context) => {
   console.log("Signup function called");
@@ -48,6 +27,15 @@ export const signup = async (c: Context) => {
   try {
     const body: { email: string; password: string } = await c.req.json();
     console.log("Request Body:", body);
+
+    const { success } = signupInput.safeParse(body);
+    console.log("Validation result:", success);
+    if (!success) {
+      c.status(411);
+      return c.json({
+        message: "Inputs are not correct",
+      });
+    }
 
     const isUserExist = await prisma.user.findUnique({
       where: {
@@ -102,6 +90,14 @@ export const signin = async (c: Context) => {
 
     const body = await c.req.json();
     console.log("Signin Request Body:", body);
+
+    const { success } = signinInput.safeParse(body);
+    if (!success) {
+      c.status(411);
+      return c.json({
+        message: "Inputs are not correct",
+      });
+    }
 
     const response = await prisma.user.findUnique({
       where: {

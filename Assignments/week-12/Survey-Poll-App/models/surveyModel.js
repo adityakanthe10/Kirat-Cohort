@@ -69,8 +69,8 @@ class SurveyModel {
           create: data.questions.map((question) => ({
             question: question.question,
             Option: {
-              create: (question.Option || []) // Ensure Option exists
-                .filter((option) => option.text) // Ensure option.text exists
+              create: (question.Option || [])
+                .filter((option) => option.text)
                 .map((option) => ({
                   option: option.text,
                 })),
@@ -89,12 +89,7 @@ class SurveyModel {
   }
 
   static async deleteSurvey(surveyid) {
-    // if (isNaN(surveyId)) {
-    //   throw new Error("Invalid survey Id");
-    // }
-
     try {
-      // Delete options first
       await prisma.option.deleteMany({
         where: {
           Question: {
@@ -102,15 +97,11 @@ class SurveyModel {
           },
         },
       });
-
-      // Then delete questions
       await prisma.question.deleteMany({
         where: {
           surveyId: surveyid,
         },
       });
-
-      // Finally delete the survey
       return await prisma.survey.delete({
         where: {
           id: surveyid,
@@ -119,12 +110,6 @@ class SurveyModel {
     } catch (error) {
       return error;
     }
-    //   const surveyId = Number(id);
-    //   if (isNaN(surveyId)) {
-    //     throw new Error("Invalid survey Id");
-    //   }
-    //   return await prisma.survey.delete({ where: { id: surveyId } });
-    // }
   }
 }
 
