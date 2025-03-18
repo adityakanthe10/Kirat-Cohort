@@ -25,7 +25,8 @@ export const signup = async (c: Context) => {
   }).$extends(withAccelerate());
 
   try {
-    const body: { email: string; password: string } = await c.req.json();
+    const body: { email: string; password: string; name?: string } =
+      await c.req.json();
     console.log("Request Body:", body);
 
     const { success } = signupInput.safeParse(body);
@@ -53,6 +54,7 @@ export const signup = async (c: Context) => {
       data: {
         email: body.email,
         password: body.password,
+        name: body.name || "Anonymous",
       },
     });
     console.log("User Created:", response);
