@@ -72,6 +72,16 @@ export const getBlogById = async (c: Context) => {
   try {
     const blog = await prisma.post.findFirst({
       where: { id: Number(id) },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
     return c.json({
       blog,
@@ -87,7 +97,16 @@ export const getAllBlogById = async (c: Context) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  const blog = await prisma.post.findMany();
+  const blog = await prisma.post.findMany({
+    select: {
+      content: true,
+      title: true,
+      id: true,
+      author: {
+        select: { name: true },
+      },
+    },
+  });
   return c.json({
     blog,
   });
