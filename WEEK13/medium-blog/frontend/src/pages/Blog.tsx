@@ -14,6 +14,11 @@ export const Blog = () => {
       </div>
     );
   }
+
+  // Ensure blog is defined before rendering FullBlog
+  if (!blog) {
+    return <div>Error: Blog not found</div>;
+  }
   return (
     <div>
       <FullBlog blog={blog} />
