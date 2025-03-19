@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "./button";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -7,13 +8,19 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-center items-center h-full">
         <ul className="flex gap-x-40 text-white">
           <li>
-            <Button label="Home" />
+            <Link href="/">
+              <Button label="Home" />
+            </Link>
           </li>
           <li>
-            <Button label="Server Page" />
+            <Link href="static-page">
+              <Button label="Server Page" />
+            </Link>
           </li>
           <li>
-            <Button label="Client Page" />
+            <Link href="/interactive-page">
+              <Button label="Client Page" />
+            </Link>
           </li>
         </ul>
       </div>
