@@ -1,0 +1,20 @@
+{
+  "name": "week19.3",
+  "version": "1.0.0",
+  "description": "1. In real world you have various backend systems, not just one.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/ws": "^8.18.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "ws": "^8.18.1"
+  }
+}
