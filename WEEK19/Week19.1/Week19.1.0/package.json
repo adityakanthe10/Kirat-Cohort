@@ -1,0 +1,16 @@
+{
+  "name": "week19.1",
+  "version": "1.0.0",
+  "description": "1. Middlewares are code that runs before/after your request handlers\r - Commonly used for thinks like\r     1. Analytics\r     2. <b>Authentication</b>\r     3. Redirecting the users",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "express": "^4.21.2"
+  }
+}
