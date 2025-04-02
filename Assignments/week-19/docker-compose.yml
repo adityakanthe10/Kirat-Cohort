@@ -1,0 +1,26 @@
+
+services:
+  redis:
+    image: redis
+    container_name: redis-container
+    ports:
+    - "6379:6379"
+    networks:
+    - app-network
+
+  websocket-server:
+    build: .
+    container_name: websocket-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    networks:
+      - app-network
+    environment:
+      - Redis_HOST=redis
+      - Redis_PORT =6379
+
+networks:
+  app-network:
+    driver: bridge
